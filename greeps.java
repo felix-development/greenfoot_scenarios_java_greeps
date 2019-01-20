@@ -87,6 +87,15 @@ public class Greep extends Creature
         }
     }
 
+   /**
+     * Is there any food here where we are? 
+     */
+    public boolean onFood()
+    {
+        // check whether there's a tomato pile here
+        TomatoPile tomatoes = (TomatoPile) getOneIntersectingObject(TomatoPile.class);
+        return(tomatoes != null);
+    }
 
     /**
      * This method specifies the name of the author (for display on the result board).
