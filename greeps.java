@@ -36,25 +36,37 @@ public class Greep extends Creature
  
     
     /**
-     * Do what a greep's gotta do.
+     * Do what a greep's gotta do.Our edited source code is "WIP", so don't expect it to work properly. 
+     * The total score seems pretty random but it should be always something between 30 and 50 tomatoes.
+     * Map 1 & Map 2 are working fine while there are still problems on Map 3 with passing the Water and World Edges.
+     * You have to run the scenario a few times if you want to debug the source code. 
+     * 
+     * Current High Score: 19:23:  [ 30 27  0]  57  -- Felix
      */
-    public void act()
+    public void act() 
     {             
-        super.act();   // do not delete! leave as first statement in act().
+        super.act();   // Do not delete! Leave as first statement in act().
+      
         if(onFood()) {
             checkFood();
-            boolean carryingTomato = true;
+            boolean carryingTomato = true; // Set flag carryingTomato true when a tomato was found.
         }
+        
         if (carryingTomato()) {
             if(atShip()) {
                 dropTomato();
             }
             if(!atShip()) {
                 turnHome();
+                if(atWater()) { // Needs to be set here aswell when trying to turn home.
+                    turn(45);   // This is a dirty workaround and will be replaced soon.
+                }             
                 move();
             }
         }
+        
         TomatoPile tomatoes = (TomatoPile) getOneIntersectingObject(TomatoPile.class);
+        
         if( tomatoes ==  null) {
             move();
             checkFood();
@@ -62,18 +74,21 @@ public class Greep extends Creature
         else {
             return;
         }
+        
         if(randomChance(50)) {
             this.setRotation(getRotation()+10);
         }
         else {
             this.setRotation(getRotation()-10);
         }
-        if(atWater()) {
+        
+        if(atWater()) { // This needs to be set for general actions.
             turn(45);
         }
+        
         if(atWorldEdge()) {
             turn(45);
-        }            
+        }
     }
 
     
