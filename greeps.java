@@ -37,18 +37,18 @@ public class Greep extends Creature
     }
  
     
-    /**
+     /**
      * Do what a greep's gotta do.Our edited source code is "WIP", so don't expect it to work properly. 
      * The total score seems pretty random but it should be always something between 30 and 50 tomatoes.
      * Map 1 & Map 2 are working fine while there are still problems on Map 3 with passing the Water and World Edges.
      * You have to run the scenario a few times if you want to debug the source code. 
      * 
-     * Current High Score: 19:23:  [ 30 27  0]  57  -- Felix
+     * Current High Score: 15:39:  [ 30 24  9]  63  -- Felix
      */
     public void act() 
-    {             
+    {
         super.act();   // Do not delete! Leave as first statement in act().
-      
+        
         if(onFood()) {
             checkFood();
             boolean carryingTomato = true; // Set flag carryingTomato true when a tomato was found.
@@ -63,9 +63,12 @@ public class Greep extends Creature
             }
             if(!atShip()) {
                 turnHome();
-                if(atWater()) { // Needs to be set here aswell when trying to turn home.
-                    turn(45);   // This is a dirty workaround and will be replaced soon.
-                }             
+                if(atWater()) {
+                    turn(145);   // Turn 145° in order to catch some tomatoes on Map 3.
+                }
+                if(isAtEdge()) {
+                    turn(145);
+                }                    
                 move();
             }
         }
@@ -92,7 +95,7 @@ public class Greep extends Creature
             turn(45);
         }
         
-        if(atWorldEdge()) {
+        if(isAtEdge()) {
             turn(45);
         }
     }
