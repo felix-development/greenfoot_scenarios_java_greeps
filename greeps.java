@@ -5,7 +5,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, and Greenfoot)
  * A Greep is an alien creature that likes to collect tomatoes.
  * 
  * @ author Felix Patryjas (@felix-development), Leo Mühlenhoff (@lm-development)
- * @ version 0.1 release
+ * @ version 0.2 release
  * @ Current State: Working in progress
  *
  */
